@@ -1,0 +1,84 @@
+@model IReadOnlyList<PropertyRow>
+@{ ViewData["Title"] = "Properties & units"; }
+<div id="page-content">
+    <div class="page-heading">
+        <div><p class="eyebrow">Portfolio management</p>
+            <h1>Properties &amp; units</h1>
+            <p class="text-body-secondary mb-0">Manage your properties and the spaces people call home.</p></div>
+        <button type="button" class="btn btn-primary" data-modal-url="@Url.Action("Edit")">
+            <fa-icon name="plus"/>
+            Add property
+        </button>
+    </div>
+    @if (Model.Count == 0)
+    {
+        <div class="card empty-state"><h2 class="h5">Your portfolio starts here</h2>
+            <p>Add your first property to start managing units.</p></div>
+    }
+    @foreach (var property in Model)
+    {
+        <section class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex gap-2 align-items-center flex-wrap"><h2 class="h4 me-auto">@property.Name</h2>
+                    <button type="button" class="btn btn-outline-primary"
+                            data-modal-url="@Url.Action("Edit", new { id = property.Id })">
+                        <fa-icon name="pen-to-square"/>
+                        Edit property
+                    </button>
+                    <button type="button" class="btn btn-outline-danger"
+                            data-modal-url="@Url.Action("Edit", new { id = property.Id, delete = true })">
+                        <fa-icon name="trash-can"/>
+                        Remove property
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                            data-modal-url="@Url.Action("Edit", "Units", new { propertyId = property.Id })">
+                        <fa-icon name="plus"/>
+                        Add unit
+                    </button>
+                </div>
+                <p class="text-body-secondary">@property.Address</p>
+                <div class="table-responsive" tabindex="0" role="region" aria-label="Units for @property.Name">
+                    <table class="table table-hover">
+                        <caption class="visually-hidden">Units for @property.Name</caption>
+                        <thead>
+                        <tr>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Bedrooms</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Monthly rent</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var unit in property.Units)
+                        {
+                            <tr>
+                                <td>@unit.Number</td>
+                                <td>@unit.Bedrooms</td>
+                                <td>@unit.Type</td>
+                                <td>@unit.Rent.ToString("C")</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-primary"
+                                            data-modal-url="@Url.Action("Edit", "Units", new { id = unit.Id })">
+                                        <fa-icon name="pen-to-square"/>
+                                        Edit
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                            data-modal-url="@Url.Action("Edit", "Units", new { id = unit.Id, delete = true })">
+                                        <fa-icon name="trash-can"/>
+                                        Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                @if (property.Units.Count == 0)
+                {
+                    <p>No units yet.</p>
+                }
+            </div>
+        </section>
+    }
+</div>

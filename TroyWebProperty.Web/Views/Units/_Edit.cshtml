@@ -1,0 +1,34 @@
+@model UnitForm
+<form asp-action="Edit" asp-controller="Units" method="post" data-modal-form>
+    <partial name="_ModalHeader" model='@(Model.Delete ? "Remove unit" : "Unit")'/>
+    <div class="modal-body">
+        <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
+        <input asp-for="Id" type="hidden"/><input asp-for="RowVersion" type="hidden"/><input asp-for="PropertyId"
+                                                                                             type="hidden"/><input
+            asp-for="Delete" type="hidden"/>
+        @if (Model.Delete)
+        {
+            <p>Remove unit @Model.Number? Units with applications or leases are retained.</p>
+        }
+        else
+        {
+            <div class="form-field"><label asp-for="Number">Unit number</label><input asp-for="Number"
+                                                                                      class="form-control"/><span
+                    asp-validation-for="Number"></span></div>
+            <div class="form-field"><label asp-for="Bedrooms"></label><input asp-for="Bedrooms"
+                                                                             class="form-control"/><span
+                    asp-validation-for="Bedrooms"></span></div>
+            <div class="form-field"><label asp-for="MonthlyRent">Monthly rent</label><input asp-for="MonthlyRent"
+                                                                                            class="form-control"/><span
+                    asp-validation-for="MonthlyRent"></span></div>
+            <div class="form-field"><label asp-for="UnitTypeId">Unit type</label><select asp-for="UnitTypeId"
+                                                                                         asp-items="Model.Types"
+                                                                                         class="form-select">
+                    <option value="">Select a type</option>
+                </select><span asp-validation-for="UnitTypeId"></span></div>
+        }
+    </div>
+    <partial name="_ModalActions" model='@(new ModalActions(Model.Delete ? "Remove" : "Save", Model.Delete))'/>
+</form>
+
+

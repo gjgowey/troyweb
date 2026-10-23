@@ -1,0 +1,44 @@
+@model RegisterViewModel
+@{ ViewData["Title"] = "Register"; }
+<div class="auth-layout">
+    <aside class="auth-intro"><p class="eyebrow">Haven Rentals</p>
+        <h1>Make yourself at home</h1>
+        <p class="lead">Create your account and take the next step.</p>
+        <div class="auth-note"><span class="brand-mark" aria-hidden="true">H</span>
+            <p>Find a place.<br/>Start a new chapter.</p></div>
+    </aside>
+    <section class="card card-body auth-card"><h2 class="h4 mb-2">Create an account</h2>
+        <p class="text-body-secondary mb-4">First and last name are required. Title and middle initial are optional.</p>
+        <form asp-action="Register" method="post" class="account-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary" role="alert"></div>
+            <input asp-for="ReturnUrl" type="hidden"/>
+            @Html.EditorFor(static model => model, "PersonName")
+            <div class="form-field">
+                <label asp-for="Role"></label>
+                <select asp-for="Role" class="form-select">
+                    <option value="Applicant">Applicant</option>
+                    <option value="PropertyManager">Property manager</option>
+                </select>
+                <span asp-validation-for="Role"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" autocomplete="username"/>
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" autocomplete="new-password"/>
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password"/>
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
+            <button class="btn btn-primary account-submit" type="submit">Register</button>
+            <a asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">Already registered? Log in</a>
+        </form>
+    </section>
+</div>
+

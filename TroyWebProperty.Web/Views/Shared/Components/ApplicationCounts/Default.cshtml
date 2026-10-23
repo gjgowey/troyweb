@@ -1,0 +1,13 @@
+@using TroyWebProperty.Core
+@model IReadOnlyList<StatusCount>
+<div class="row g-3 mb-4" aria-label="Application totals">
+    @foreach (var status in ApplicationRules.Statuses)
+    {
+        var total = Model.FirstOrDefault(x => x.Name == status)?.Count ?? 0;
+        <div class="col-6 col-md-4 col-xl-2">
+            <div class="card card-body metric-card h-100"><span class="metric-label">@status</span><strong
+                    class="metric-value">@total</strong><span class="metric-line metric-@status.ToLowerInvariant()"
+                                                              aria-hidden="true"></span></div>
+        </div>
+    }
+</div>

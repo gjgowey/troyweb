@@ -1,0 +1,2 @@
+@model DateTime
+<time datetime="@DateTime.SpecifyKind(Model, DateTimeKind.Utc).ToString("O")">@Model.ToString("MMM d, yyyy")</time>

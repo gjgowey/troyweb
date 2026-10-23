@@ -1,0 +1,27 @@
+@model ApplicationEditModel
+<section class="mt-5"><h2 class="h4">Status and review history</h2>
+    <div class="table-responsive" tabindex="0" role="region" aria-label="Status and review history">
+        <table class="table table-hover">
+            <caption class="visually-hidden">Application status and review history</caption>
+            <thead>
+            <tr>
+                <th scope="col">When (UTC)</th>
+                <th scope="col">Who</th>
+                <th scope="col">Transition</th>
+                <th scope="col">Comment</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var change in Model.Changes)
+            {
+                <tr>
+                    <td class="text-nowrap">@change.ChangedAtUtc.ToString("u")</td>
+                    <td>@change.ActorName</td>
+                    <td>@change.FromStatus → @change.ToStatus</td>
+                    <td>@change.Comment</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

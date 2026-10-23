@@ -1,0 +1,6 @@
+@model string
+@{
+    var tone = Model switch { "Approved" => "success", "Submitted" => "info", "Returned" => "warning", "Denied" => "danger", _ => "neutral" };
+    var icon = Model switch { "Approved" => "circle-check", "Submitted" => "paper-plane", "Returned" => "rotate-left", "Denied" => "circle-xmark", "Withdrawn" => "ban", _ => "file-pen" };
+}
+<span class="badge rounded-pill status-badge status-@tone"><fa-icon name="@icon"/>@Model</span>

@@ -1,0 +1,24 @@
+@using TroyWebProperty.Core
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <div class="account-menu d-lg-flex align-items-center gap-3">
+        <div class="account-identity"><span
+                class="account-role">@(User.IsInRole(AppRoles.PropertyManager) ? "Property manager" : "Applicant")</span><span
+                class="account-email">@User.Identity.Name</span></div>
+        <form asp-controller="Account" asp-action="Logout" method="post">
+            <button type="submit" class="btn btn-sm btn-outline-secondary">
+                <fa-icon name="right-from-bracket"/>
+                Log out
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="d-flex gap-2 py-2 py-lg-0"><a class="btn btn-outline-primary" asp-controller="Account"
+                                              asp-action="Login">
+            <fa-icon name="right-to-bracket"/>
+            Log in</a><a class="btn btn-primary" asp-controller="Account" asp-action="Register">
+            <fa-icon name="user-plus"/>
+            Create an account</a></div>
+}

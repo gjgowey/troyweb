@@ -1,0 +1,9 @@
+<Solution>
+    <Project Path="TroyWebProperty.Core/TroyWebProperty.Core.csproj"/>
+    <Project Path="TroyWebProperty.Infrastructure/TroyWebProperty.Infrastructure.csproj"/>
+    <Project Path="TroyWebProperty.Web/TroyWebProperty.Web.csproj"/>
+    <Folder Name="/tests/">
+        <Project Path="tests/TroyWebProperty.Core.Tests/TroyWebProperty.Core.Tests.csproj"/>
+        <Project Path="tests/TroyWebProperty.IntegrationTests/TroyWebProperty.IntegrationTests.csproj"/>
+    </Folder>
+</Solution>

@@ -1,0 +1,25 @@
+@model ApplicationEditModel
+<section><h2 class="h4">Applicant information</h2>
+    <p class="text-body-secondary">Your contact details help us keep your application moving. First and last name,
+        phone, email, and current address are required.</p>
+    @if (Model.ReadOnly || Model.Step == 3)
+    {
+        @Html.DisplayFor(static model => model.Info)
+    }
+    else
+    {
+        @Html.EditorFor(static model => model.Info, "PersonName")
+        <div class="form-field"><label asp-for="Info.Phone">Phone</label><input asp-for="Info.Phone"
+                                                                                class="form-control"
+                                                                                autocomplete="tel"
+                                                                                inputmode="tel"/><span
+                asp-validation-for="Info.Phone"></span></div>
+        <div class="form-field"><label asp-for="Info.Email">Email</label><input asp-for="Info.Email"
+                                                                                class="form-control"
+                                                                                autocomplete="email"/><span
+                asp-validation-for="Info.Email"></span></div>
+        <div class="form-field"><label asp-for="Info.CurrentAddress">Current address</label><input
+                asp-for="Info.CurrentAddress" class="form-control" autocomplete="street-address"/><span
+                asp-validation-for="Info.CurrentAddress"></span></div>
+    }
+</section>

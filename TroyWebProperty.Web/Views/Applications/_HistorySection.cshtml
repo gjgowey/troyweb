@@ -1,0 +1,54 @@
+@model ApplicationEditModel
+@{ var editable = !Model.ReadOnly && Model.Step != 3; }
+<section>
+    <h2 class="h4">Residence history</h2>
+    <div class="table-responsive" tabindex="0" role="region" aria-label="Residence history">
+        <table class="table table-hover">
+            <caption class="visually-hidden">Previous residences</caption>
+            <thead>
+            <tr>
+                <th scope="col">Address</th>
+                <th scope="col">Landlord</th>
+                <th scope="col">Dates</th>
+                @if (editable)
+                {
+                    <th scope="col">Actions</th>
+                }
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var residence in Model.Residences)
+            {
+                <tr>
+                    <td>@residence.Address</td>
+                    <td>@residence.LandlordName<br/>@residence.LandlordPhone</td>
+                    <td class="text-nowrap">@residence.MoveIn.ToString("yyyy-MM-dd") → @residence.MoveOut.ToString("yyyy-MM-dd")</td>
+                    @if (editable)
+                    {
+                        <td class="text-nowrap">
+                            <button type="button" class="btn btn-sm btn-outline-primary"
+                                    data-modal-url="@Url.Action("Residence", new { applicationId = Model.Id, id = residence.Id })">
+                                Edit
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger"
+                                    data-modal-url="@Url.Action("Residence", new { applicationId = Model.Id, id = residence.Id, delete = true })">
+                                Remove
+                            </button>
+                        </td>
+                    }
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    @if (editable)
+    {
+        <button type="button" class="btn btn-outline-primary"
+                data-modal-url="@Url.Action("Residence", new { applicationId = Model.Id })">Add residence
+        </button>
+    }
+    @if (Model.Residences.Count == 0)
+    {
+        <p>Add at least one prior residence.</p>
+    }
+</section>

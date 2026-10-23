@@ -1,0 +1,34 @@
+@model ResidenceForm
+<form asp-action="Residence" method="post" data-modal-form>
+    <partial name="_ModalHeader" model='@(Model.Delete ? "Remove residence" : "Residence")'/>
+    <div class="modal-body">
+        <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
+        <input asp-for="ApplicationId" type="hidden"/><input asp-for="Id" type="hidden"/><input asp-for="RowVersion"
+                                                                                                type="hidden"/><input
+            asp-for="Delete" type="hidden"/>
+        @if (Model.Delete)
+        {
+            <p>Remove this residence from the application?</p>
+        }
+        else
+        {
+            <div class="form-field"><label asp-for="Address"></label><input asp-for="Address"
+                                                                            class="form-control"/><span
+                    asp-validation-for="Address"></span></div>
+            <div class="form-field"><label asp-for="LandlordName">Landlord name</label><input asp-for="LandlordName"
+                                                                                              class="form-control"/><span
+                    asp-validation-for="LandlordName"></span></div>
+            <div class="form-field"><label asp-for="LandlordPhone">Landlord phone</label><input asp-for="LandlordPhone"
+                                                                                                class="form-control"/><span
+                    asp-validation-for="LandlordPhone"></span></div>
+            <div class="form-field"><label asp-for="MoveIn">Move-in date</label><input asp-for="MoveIn"
+                                                                                       class="form-control"/><span
+                    asp-validation-for="MoveIn"></span></div>
+            <div class="form-field"><label asp-for="MoveOut">Move-out date</label><input asp-for="MoveOut"
+                                                                                         class="form-control"/><span
+                    asp-validation-for="MoveOut"></span></div>
+        }
+    </div>
+    <partial name="_ModalActions" model='@(new ModalActions(Model.Delete ? "Remove" : "Save", Model.Delete))'/>
+</form>
+

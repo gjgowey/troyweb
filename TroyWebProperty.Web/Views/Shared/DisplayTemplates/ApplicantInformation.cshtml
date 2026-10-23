@@ -1,0 +1,11 @@
+@model TroyWebProperty.Core.ApplicantInformation
+<dl class="detail-list">
+    <dt>Name</dt>
+    <dd>@Html.DisplayFor(static x => x.FullName)</dd>
+    <dt>@Html.DisplayNameFor(static x => x.Phone)</dt>
+    <dd>@Html.DisplayFor(static x => x.Phone)</dd>
+    <dt>@Html.DisplayNameFor(static x => x.Email)</dt>
+    <dd>@Html.DisplayFor(static x => x.Email)</dd>
+    <dt>Current address</dt>
+    <dd>@Html.DisplayFor(static x => x.CurrentAddress)</dd>
+</dl>

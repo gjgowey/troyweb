@@ -1,0 +1,23 @@
+@model PropertyForm
+<form asp-action="Edit" asp-controller="Properties" method="post" data-modal-form>
+    <partial name="_ModalHeader" model='@(Model.Delete ? "Remove property" : "Property")'/>
+    <div class="modal-body">
+        <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
+        <input asp-for="Id" type="hidden"/><input asp-for="RowVersion" type="hidden"/><input asp-for="Delete"
+                                                                                             type="hidden"/>
+        @if (Model.Delete)
+        {
+            <p>Remove @Model.Name? The property must have no units.</p>
+        }
+        else
+        {
+            <div class="form-field"><label asp-for="Name"></label><input asp-for="Name" class="form-control"/><span
+                    asp-validation-for="Name"></span></div>
+            <div class="form-field"><label asp-for="Address"></label><input asp-for="Address"
+                                                                            class="form-control"/><span
+                    asp-validation-for="Address"></span></div>
+        }
+    </div>
+    <partial name="_ModalActions" model='@(new ModalActions(Model.Delete ? "Remove" : "Save", Model.Delete))'/>
+</form>
+

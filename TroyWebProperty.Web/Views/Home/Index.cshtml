@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Welcome";
+}
+<section class="welcome-hero">
+    <div class="hero-decoration" aria-hidden="true"></div>
+    <div class="hero-copy col-lg-10">
+        <p class="eyebrow">Haven Rentals</p>
+        <h1>Welcome to your next home</h1>
+        <p class="lead my-4">Explore our available apartments and apply online. Sign in to manage your rental
+            applications and follow their progress.</p>
+        <div class="d-flex flex-wrap gap-3">
+            <a class="btn btn-primary btn-lg" asp-controller="Account" asp-action="Login">Log in</a>
+            <a class="btn btn-outline-primary btn-lg" asp-controller="Account" asp-action="Register">Create an
+                account</a>
+            <a class="btn btn-link align-self-center" asp-controller="Units" asp-action="Index">Browse available
+                apartments</a>
+        </div>
+    </div>
+</section>
+<section class="row g-4 pb-4" aria-label="Getting started">
+    <div class="col-md-4">
+        <div class="card card-body h-100"><span class="step-number" aria-hidden="true">01</span>
+            <h2 class="h5">Find a place</h2>
+            <p>Browse available units and choose a home that suits you.</p></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-body h-100"><span class="step-number" aria-hidden="true">02</span>
+            <h2 class="h5">Apply online</h2>
+            <p>Complete your information and residence history, then submit your application.</p></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-body h-100"><span class="step-number" aria-hidden="true">03</span>
+            <h2 class="h5">Stay informed</h2>
+            <p>Sign in to view application status and respond to requests for corrections.</p></div>
+    </div>
+</section>

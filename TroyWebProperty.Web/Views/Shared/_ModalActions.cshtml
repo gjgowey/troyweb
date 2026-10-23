@@ -1,0 +1,7 @@
+@model ModalActions
+<div class="modal-footer">
+    <span class="modal-save-status me-auto small" role="status" aria-live="polite"></span>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+    <button type="submit" class="btn @(Model.Destructive ? "btn-danger" : "btn-primary")">
+        <fa-icon name="@(Model.Destructive ? "trash-can" : "check")"/>@Model.SubmitText</button>
+</div>

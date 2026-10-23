@@ -1,0 +1,21 @@
+@model ReviewForm
+<form asp-action="Review" method="post" data-modal-form>
+    <partial name="_ModalHeader" model='@("Review application")'/>
+    <div class="modal-body">
+        <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
+        <input asp-for="Id" type="hidden"/><input asp-for="RowVersion" type="hidden"/>
+        <div class="form-field"><label asp-for="Outcome"></label><select asp-for="Outcome" class="form-select">
+                <option value="Approved">Approve</option>
+                <option value="Returned">Return for correction</option>
+                <option value="Denied">Deny</option>
+            </select><span asp-validation-for="Outcome"></span></div>
+        <div class="form-field"><label asp-for="Comment">Comment (required for Return or Deny)</label><textarea
+                asp-for="Comment" class="form-control"></textarea><span asp-validation-for="Comment"></span></div>
+        <div class="form-field"><label asp-for="StartDate">Lease start date (Approve only)</label><input
+                asp-for="StartDate" class="form-control"/>
+            <p class="form-text">Approval issues a twelve-month lease.</p><span asp-validation-for="StartDate"></span>
+        </div>
+    </div>
+    <partial name="_ModalActions" model='@(new ModalActions("Complete review"))'/>
+</form>
+

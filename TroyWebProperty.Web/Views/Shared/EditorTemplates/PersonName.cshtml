@@ -1,0 +1,38 @@
+@using TroyWebProperty.Core
+@model TroyWebProperty.Core.PersonNameInput
+<fieldset class="person-name-fields">
+    <legend class="visually-hidden">Your name</legend>
+    <div class="form-field">
+        <label asp-for="Title"></label>
+        <select asp-for="Title" class="form-select" autocomplete="honorific-prefix"
+                aria-describedby="@Html.IdFor(static x => x.Title)-validation">
+            <option value="">Select a title (optional)</option>
+            @foreach (var title in PersonNames.Titles)
+            {
+                <option value="@title">@title</option>
+            }
+        </select>
+        <span asp-validation-for="Title" id="@Html.IdFor(static x => x.Title)-validation" class="text-danger"></span>
+    </div>
+    <div class="form-field">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" required autocomplete="given-name"
+               aria-describedby="@Html.IdFor(static x => x.FirstName)-validation"/>
+        <span asp-validation-for="FirstName" id="@Html.IdFor(static x => x.FirstName)-validation"
+              class="text-danger"></span>
+    </div>
+    <div class="form-field">
+        <label asp-for="MiddleInitial"></label>
+        <input asp-for="MiddleInitial" class="form-control" autocomplete="additional-name"
+               aria-describedby="@Html.IdFor(static x => x.MiddleInitial)-validation"/>
+        <span asp-validation-for="MiddleInitial" id="@Html.IdFor(static x => x.MiddleInitial)-validation"
+              class="text-danger"></span>
+    </div>
+    <div class="form-field">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" required autocomplete="family-name"
+               aria-describedby="@Html.IdFor(static x => x.LastName)-validation"/>
+        <span asp-validation-for="LastName" id="@Html.IdFor(static x => x.LastName)-validation"
+              class="text-danger"></span>
+    </div>
+</fieldset>
